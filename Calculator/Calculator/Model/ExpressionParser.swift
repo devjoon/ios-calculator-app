@@ -22,7 +22,7 @@ enum ExpressionParser {
         return Formula(operands: operands, operators: operators)
         
     }
-    // "1 2 3 + 3 4 5 - 2 3 1 / 1 2 3" => "[123,+,345,-,231,/,123]"
+
     func componentsByOperators(from input: String) -> [String] {
         var separatedElements = [input]
         for element in Operator.allCases {
@@ -32,12 +32,3 @@ enum ExpressionParser {
         return separatedElements
     }
 }
-
-//struct Formula {
-//    var operands: CalculatorItemQueue<Double>
-//    var operators: CalculatorItemQueue<Operator>
-//
-//    func result() -> Double {
-//        return 1.0
-//    }
-//}
