@@ -10,11 +10,11 @@ struct CalculatorItemQueue<T: CalculatorItem> {
     private var list = LinkedList<T>()
     
     mutating func enqueue(_ elemnet: T) {
-        list.enqueue(elemnet)
+        list.append(elemnet)
     }
     
     mutating func dequeue() -> T? {
-        list.dequeue()
+        list.removeFirst()
     }
     
     func peek() -> T? {

@@ -6,11 +6,25 @@
 //
 
 struct LinkedList<T> {
-    private var head: Node<T>?
-    private var tail: Node<T>?
+    private final class Node {
+        private(set) var next: Node?
+        private(set) var element: T
+        
+        init(_ element: T) {
+            self.next = nil
+            self.element = element
+        }
+        
+        func setNext(_ node: Node) {
+            self.next = node
+        }
+    }
+    
+    private var head: Node?
+    private var tail: Node?
     private var nodeCount = 0
     
-    mutating func enqueue(_ elemnet: T) {
+    mutating func append(_ elemnet: T) {
         let newNode = Node(elemnet)
         if head == nil {
             head = newNode
@@ -22,13 +36,13 @@ struct LinkedList<T> {
         nodeCount += 1
     }
     
-    mutating func dequeue() -> T? {
-        guard let dequeuedElement = head?.element else {
+    mutating func removeFirst() -> T? {
+        guard let element = head?.element else {
             return nil
         }
         head = head?.next
         nodeCount -= 1
-        return dequeuedElement
+        return element
     }
     
     func peek() -> T? {
@@ -39,33 +53,16 @@ struct LinkedList<T> {
     }
     
     func isEmpty() -> Bool {
-        if head == nil {
-            return true
-        } else {
-            return false
-        }
+        return head == nil ? true : false
     }
     
     mutating func clear() {
         head = nil
         tail = nil
+        nodeCount = 0
     }
     
     func count() -> Int {
         return nodeCount
-    }
-}
-
-final class Node<T> {
-    private(set) var next: Node<T>?
-    private(set) var element: T
-    
-    init(_ element: T) {
-        self.next = nil
-        self.element = element
-    }
-    
-    func setNext(_ node: Node<T>) {
-        self.next = node
     }
 }
